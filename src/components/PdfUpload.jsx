@@ -19,7 +19,6 @@ const PdfUpload = () => {
   };
 
   const handleUpload = async () => {
-    // if (!isLoggedin) return navigate("/login");
     if (!selectedFile) return;
 
     const formData = new FormData();
@@ -32,12 +31,13 @@ const PdfUpload = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      const fileBase64 = res.data.dataUri;
+      // ✅ Use dataUri directly
+      const fileUrl = res.data.dataUri;
 
-      // ✅ Store it
-      localStorage.setItem("pdfUrl", fileBase64);
+      // ✅ Save in localStorage
+      localStorage.setItem("pdfUrl", fileUrl);
 
-      // ✅ Navigate to sign page
+      // ✅ Navigate
       navigate("/sign");
     } catch (err) {
       console.error("Upload failed:", err);
