@@ -19,10 +19,10 @@ const PdfUpload = () => {
   };
 
   const handleUpload = async () => {
-    if (!isLoggedin) {
-      navigate("/login");
-      return;
-    }
+    // if (!isLoggedin) {
+    //   navigate("/login");
+    //   return;
+    // }
 
     if (!selectedFile) return;
 
