@@ -32,13 +32,12 @@ const PdfUpload = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      const filePath = res.data.filePath;
-      const fileUrl = backendUrl + filePath;
+      const fileBase64 = res.data.dataUri;
 
-      // ✅ Save to localStorage
-      localStorage.setItem("pdfUrl", fileUrl);
+      // ✅ Store it
+      localStorage.setItem("pdfUrl", fileBase64);
 
-      // ✅ Navigate
+      // ✅ Navigate to sign page
       navigate("/sign");
     } catch (err) {
       console.error("Upload failed:", err);
