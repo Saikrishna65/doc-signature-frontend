@@ -27,11 +27,15 @@ const FONT_OPTIONS = [
 
 const PdfSignatureDropper = () => {
   const location = useLocation();
-  const fileUrl = location.state?.fileUrl || localStorage.getItem("pdfUrl");
+  const pdfUrl = localStorage.getItem("pdfUrl");
 
-  if (!fileUrl) {
+  if (!pdfUrl || !pdfUrl.startsWith("data:application/pdf")) {
     return <div className="p-4">No PDF provided. Please upload one first.</div>;
   }
+
+  const loadingTask = pdfjsLib.getDocument({
+    data: atob(pdfUrl.split(",")[1]),
+  });
 
   const { backendUrl } = useContext(AppContext);
 

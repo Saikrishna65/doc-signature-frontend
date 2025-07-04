@@ -31,13 +31,11 @@ const PdfUpload = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      // ✅ Use dataUri directly
-      const fileUrl = res.data.dataUri;
+      const fileUrl = res.data.dataUri; // <== base64 data URL returned from backend
 
-      // ✅ Save in localStorage
+      // ✅ Save to localStorage
       localStorage.setItem("pdfUrl", fileUrl);
 
-      // ✅ Navigate
       navigate("/sign");
     } catch (err) {
       console.error("Upload failed:", err);
