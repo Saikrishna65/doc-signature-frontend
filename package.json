@@ -10,9 +10,26 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/alex-brush": "^5.2.6",
+    "@fontsource/dancing-script": "^5.2.6",
+    "@fontsource/great-vibes": "^5.2.6",
+    "@fontsource/kaushan-script": "^5.2.6",
+    "@fontsource/marck-script": "^5.2.6",
+    "@fontsource/pacifico": "^5.2.6",
+    "@fontsource/satisfy": "^5.2.6",
     "@tailwindcss/vite": "^4.1.10",
+    "axios": "^1.10.0",
+    "framer-motion": "^12.18.1",
+    "html2canvas": "^1.4.1",
+    "lucide-react": "^0.522.0",
+    "pdfjs-dist": "^3.11.174",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hot-toast": "^2.5.2",
+    "react-pdf": "^9.2.1",
+    "react-router-dom": "^7.6.2",
+    "react-signature-canvas": "^1.1.0-alpha.2",
+    "react-toastify": "^11.0.5",
     "tailwindcss": "^4.1.10"
   },
   "devDependencies": {
