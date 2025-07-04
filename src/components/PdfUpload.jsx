@@ -1,3 +1,4 @@
+// frontend/pages/PdfUpload.jsx
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -30,15 +31,13 @@ const PdfUpload = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post(backendUrl + "/api/upload", formData, {
+      const res = await axios.post(`${backendUrl}/api/upload`, formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      const filePath = res.data.filePath;
-      navigate("/sign", {
-        state: { fileUrl: backendUrl + `${filePath}` },
-      });
+      const fileUrl = res.data.dataUri;
+      navigate("/sign", { state: { fileUrl } });
     } catch (err) {
       console.error("Upload failed:", err);
     } finally {

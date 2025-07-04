@@ -179,24 +179,28 @@ const PdfSignatureDropper = () => {
       img.style.opacity = opacity;
       sig.appendChild(img);
     } else {
-      const {
-        text,
-        font: f,
-        fontSize: fs,
-        color: c,
-        opacity: op,
-      } = JSON.parse(data);
+      try {
+        const {
+          text,
+          font: f,
+          fontSize: fs,
+          color: c,
+          opacity: op,
+        } = JSON.parse(data);
 
-      sig.style.fontFamily = f;
-      sig.style.fontSize = `${fs}px`;
-      sig.style.color = c;
-      sig.style.opacity = op;
-      sig.textContent = text;
+        sig.style.fontFamily = f;
+        sig.style.fontSize = `${fs}px`;
+        sig.style.color = c;
+        sig.style.opacity = op;
+        sig.textContent = text;
+      } catch (err) {
+        console.error("Error parsing signature data:", err);
+        return; // Exit early if parse fails
+      }
     }
 
     document.body.appendChild(sig);
 
-    // Wait for fonts/images to load
     await document.fonts.ready;
 
     const canvas = await html2canvas(sig, {
