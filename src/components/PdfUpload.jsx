@@ -19,11 +19,7 @@ const PdfUpload = () => {
   };
 
   const handleUpload = async () => {
-    // if (!isLoggedin) {
-    //   navigate("/login");
-    //   return;
-    // }
-
+    // if (!isLoggedin) return navigate("/login");
     if (!selectedFile) return;
 
     const formData = new FormData();
@@ -31,13 +27,19 @@ const PdfUpload = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post(`${backendUrl}/api/upload`, formData, {
+      const res = await axios.post(backendUrl + "/api/upload", formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      const fileUrl = res.data.dataUri;
-      navigate("/sign", { state: { fileUrl } });
+      const filePath = res.data.filePath;
+      const fileUrl = backendUrl + filePath;
+
+      // ✅ Save to localStorage
+      localStorage.setItem("pdfUrl", fileUrl);
+
+      // ✅ Navigate
+      navigate("/sign");
     } catch (err) {
       console.error("Upload failed:", err);
     } finally {

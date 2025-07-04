@@ -27,7 +27,7 @@ const FONT_OPTIONS = [
 
 const PdfSignatureDropper = () => {
   const location = useLocation();
-  const fileUrl = location.state?.fileUrl;
+  const fileUrl = location.state?.fileUrl || localStorage.getItem("pdfUrl");
 
   if (!fileUrl) {
     return <div className="p-4">No PDF provided. Please upload one first.</div>;
